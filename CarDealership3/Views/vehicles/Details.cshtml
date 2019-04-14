@@ -1,0 +1,66 @@
+﻿@model CarDealership3.Models.vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.make.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.model.colour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model.colour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soldDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soldDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.vehicleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
