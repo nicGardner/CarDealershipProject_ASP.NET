@@ -15,6 +15,7 @@ namespace CarDealership3.Controllers
         private Models.Database db = new Models.Database();
 
         // GET: models
+        // loads carModels/index with a list of all car models
         public ActionResult Index()
         {
             var models = db.models.Include(m => m.vehicleType);
@@ -22,6 +23,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: models/Details/5
+        // is never called, because there are no additional details to be displayed
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: models/Create
+        // loads the page carModels/create, with a list of all vehicle types
         public ActionResult Create()
         {
             ViewBag.vehicleTypeId = new SelectList(db.vehicleTypes, "vehicleTypeId", "name");
@@ -44,6 +47,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: models/Create
+        // validates, then enters the info from the form into the db
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -62,6 +66,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: models/Edit/5
+        // loads the carModels/edit page, with the model with the selected id
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: models/Edit/5
+        // validates, then updates the entry in the db with the coresponding id 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -95,6 +101,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: models/Delete/5
+        // loads the carModels/delete page with the model with the selected id
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: models/Delete/5
+        // deletes the entry from the db with the coresponding id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

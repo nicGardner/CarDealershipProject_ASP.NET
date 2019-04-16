@@ -29,6 +29,7 @@ namespace CarDealership3.Models
         [StringLength(66)]
         public string name { get; set; }
 
+        // this field is not in the db, it is a concatination of the model's name and it's coresponding type from the vehicleTypes table
         public string fullName
         {
             get

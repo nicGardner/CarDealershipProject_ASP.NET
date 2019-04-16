@@ -15,6 +15,7 @@ namespace CarDealership3.Controllers
         private Models.Database db = new Models.Database();
 
         // GET: vehicles
+        // loads the vehicles/index page with a list of vehicles from the db
         public ActionResult Index()
         {
             var vehicles = db.vehicles.Include(v => v.make).Include(v => v.model);
@@ -22,6 +23,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: vehicles/Details/5
+        // returns the vehicles/details page with the vehicle with the coresponding id
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: vehicles/Create
+        // loads the vehicles/create page with a list of makes and models from the db
         public ActionResult Create()
         {
             ViewBag.makeId = new SelectList(db.makes, "makeId", "name");
@@ -45,6 +48,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: vehicles/Create
+        // validates, then adds a new entry to the db
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -53,6 +57,11 @@ namespace CarDealership3.Controllers
         {
             if (ModelState.IsValid)
             {
+                // if the user entered no sold date, then there should be no cost either, so set cost to null
+                if (vehicle.soldDate.Equals(null))
+                {
+                    vehicle.cost = null;
+                }
                 db.vehicles.Add(vehicle);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,6 +73,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: vehicles/Edit/5
+        // loads the vehicles/edit page with the vehicle with the coresponding id, and a list of makes and models from the db
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +91,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: vehicles/Edit/5
+        // validates, then updates the db entry with the coresponding id
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,6 +100,11 @@ namespace CarDealership3.Controllers
         {
             if (ModelState.IsValid)
             {
+                // if the user entered no sold date, then there should be no cost either, so set cost to null
+                if (vehicle.soldDate.Equals(null))
+                {
+                    vehicle.cost = null;
+                }
                 db.Entry(vehicle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -99,6 +115,7 @@ namespace CarDealership3.Controllers
         }
 
         // GET: vehicles/Delete/5
+        // loads the vehicles/delete page with the vehicle with the coresponding id
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +131,7 @@ namespace CarDealership3.Controllers
         }
 
         // POST: vehicles/Delete/5
+        // validates, then deletes the db entry with the coresponding id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

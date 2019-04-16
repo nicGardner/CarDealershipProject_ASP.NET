@@ -47,10 +47,25 @@
             @Html.DisplayFor(modelItem => item.price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cost)
+            @if (item.cost.Equals(null))
+            {
+                @Html.Raw("[NOT SOLD]");
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.cost)
+            }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.soldDate)
+            @if (item.soldDate.Equals(null))
+            {
+                @Html.Raw("[NOT SOLD]");
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.soldDate)
+            }
+
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.vehicleId }) |
